@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Retro2D;
 using System.IO;
 
 namespace P.Particles
@@ -53,6 +54,129 @@ namespace P.Particles
         public Vector2 pos;
         public bool emit;
 
+        public void SetAlpha(float alphaStart, float alphaEnd)
+        {
+            alpha = new BasicTweenable<float>
+            {
+                start = alphaStart,
+                end = alphaEnd
+            };
+        }
+        public void SetSpeed(float speedStart, float speedEnd)
+        {
+            speed = new BasicTweenable<float>
+            {
+                start = speedStart,
+                end = speedEnd
+            };
+        }
+        public void SetMinimuSpeedMultiplier(float minimumSpeedMultiplier)
+        {
+            this.minimumSpeedMultiplier = minimumSpeedMultiplier;
+        }
+        public void SetMaxSpeed(float maxSpeed)
+        {
+            this.maxSpeed = maxSpeed;
+        }
+        public void SetAcceleration(Vector2 acceleration)
+        {
+            this.acceleration = acceleration;
+        }
+        public void SetScale(float scaleStart, float scaleEnd)
+        {
+            scale = new BasicTweenable<float>
+            {
+                start = scaleStart,
+                end = scaleEnd
+            };
+        }
+        public void SetMinimuScaleMultiplier(float minimumScaleMultiplier)
+        {
+            this.minimumScaleMultiplier = minimumScaleMultiplier;
+        }
+        public void SetColor(string colorStart, string colorEnd)
+        {
+            color = new BasicTweenable<string>
+            {
+                start = colorStart,
+                end = colorEnd
+            };
+        }
+        public void SetStartRotation(float min, float max)
+        {
+            startRotation = new RandNumber(min, max);
+        }
+        public void SetNoRotation(bool noRotation)
+        {
+            this.noRotation = noRotation;
+        }
+        public void SetRotationSpeed(float min, float max)
+        {
+            rotationSpeed = new RandNumber(min, max);
+        }
+        public void SetRotationAcceleration(float rotationAcceleration)
+        {
+            this.rotationAcceleration = rotationAcceleration;
+        }
+        public void SetLifetime(float min, float max)
+        {
+            lifetime = new RandNumber(min, max);
+        }
+        public void SetBlendMode(string blendMode)
+        {
+            this.blendMode = blendMode;
+        }
+        public void SetParticlesPerWave(int particlesPerWave)
+        {
+            this.particlesPerWave = particlesPerWave;
+        }
+        public void SetPawnType(string spawnType)
+        {
+            this.spawnType = spawnType;
+        }
+        public void SetParticleSapceing(float particleSpacing)
+        {
+            this.particleSpacing = particleSpacing;
+        }
+        public void SetAngleStart(float angleStart)
+        {
+            this.angleStart = angleStart;
+        }
+        public void SetFrequency(float frequency)
+        { 
+            this.frequency = frequency; 
+        }
+        public void SetSpawnChance(float spawnChance)
+        { 
+            this.spawnChance = spawnChance; 
+        }
+        public void SetEmmitterLifeTime(float emmitterLifeTime)
+        {
+            this.emitterLifetime = emmitterLifeTime;
+        }
+        public void SetMaxParticles(int maxParticles)
+        {
+            this.maxParticles = maxParticles;
+        }
+        public void SetAddAtBack(bool addAtBack)
+        {
+            this.addAtBack = addAtBack;
+        }
+        public void SetPosition(Vector2 position)
+        {
+            pos = position;
+        }
+        public void SetEmit(bool emit)
+        { 
+            this.emit = emit; 
+        }
+
+        public EmitterConfig Clone()
+        {
+            EmitterConfig clone = (EmitterConfig)MemberwiseClone();
+
+            return clone;
+        }
 
         static public JToken LoadJSON(string uri)
         {

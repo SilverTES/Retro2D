@@ -1072,7 +1072,7 @@ namespace Retro2D
         {
             private float _prevValue = 0f;
             public float Value { get; private set; } = 0f;
-            public int Index { get; private set; } = 0;
+            public int IndexGui { get; private set; } = 0;
             public Vector2 CursorPos = new Vector2();
             public float Percent { get; private set; }
 
@@ -1165,7 +1165,7 @@ namespace Retro2D
             {
                 if (_step >= 1)
                 {
-                    int index = Index;
+                    int index = IndexGui;
                     index += (int)step;
 
                     if (index <= 0) index = 0;
@@ -1282,26 +1282,26 @@ namespace Retro2D
 
                 if (_step >= 1)
                 {
-                    Index = (int)(Value * _step);
+                    IndexGui = (int)(Value * _step);
 
-                    if (Index <= 0) Index = 0;
-                    if (Index >= _step) Index = _step;
+                    if (IndexGui <= 0) IndexGui = 0;
+                    if (IndexGui >= _step) IndexGui = _step;
                 }
                 else
                 {
                     if (_step > 0)
                     {
-                        Index = (int)(Value * _maxValue);
+                        IndexGui = (int)(Value * _maxValue);
                         
-                        if (Index <= 0) Index = 0;
-                        if (Index >= 1) Index = 1;
+                        if (IndexGui <= 0) IndexGui = 0;
+                        if (IndexGui >= 1) IndexGui = 1;
                     }
                     else
                     {
-                        Index = (int)Value;
+                        IndexGui = (int)Value;
 
-                        if (Index <= 0) Index = 0;
-                        if (Index >= _maxValue) Index = (int)_maxValue;
+                        if (IndexGui <= 0) IndexGui = 0;
+                        if (IndexGui >= _maxValue) IndexGui = (int)_maxValue;
                     }
 
 
@@ -1337,7 +1337,7 @@ namespace Retro2D
                 {
                     Draw.Point(batch, 
                         AbsX + i * _division + (_cursor._rect.Width / 2) - _oX, AbsY + _rect.Height / 2 - _oY, 
-                        5, i <= Index ? _style._overColor._value : _style._color._value);
+                        5, i <= IndexGui ? _style._overColor._value : _style._color._value);
                 }
 
                 //Draw.Point(batch,
